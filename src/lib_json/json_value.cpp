@@ -167,10 +167,14 @@ inline static void decodePrefixedString(bool isPrefixed,
                                         unsigned* length,
                                         char const** value) {
   if (!isPrefixed) {
-	  if (prefixed != NULL){
+	 if (prefixed){
     *length = static_cast<unsigned>(strlen(prefixed));
     *value = prefixed;
-	  }
+	 }
+	 else{
+		 *length=NULL;
+		 *value=NULL;
+	 }
   } else {
     *length = *reinterpret_cast<unsigned const*>(prefixed);
     *value = prefixed + sizeof(unsigned);
