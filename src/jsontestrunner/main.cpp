@@ -63,9 +63,8 @@ static JSONCPP_STRING readInputTestFile(const char* path) {
   buffer[size] = 0;
   if (fread(buffer, 1, usize, file) == usize)
     text = buffer;
- if (file != NULL)
+  if (file != NULL) 
     fclose(file);
-  }
  delete[] buffer;
 return text;
 }
@@ -148,9 +147,7 @@ static int parseAndSaveValueTree(const JSONCPP_STRING& input,
       return 2;
     }
     printValueTree(factual, *root);
-if (factual != NULL)
-    fclose(factual);
-  }
+    if (factual != NULL) fclose(factual);
   return 0;
 }
 // static JSONCPP_STRING useFastWriter(Json::Value const& root) {
