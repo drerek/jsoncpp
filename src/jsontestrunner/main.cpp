@@ -66,7 +66,7 @@ static JSONCPP_STRING readInputTestFile(const char* path) {
  
  delete[] buffer;
 fclose(file);
-  return text;
+return 0;
 }
 
 static void printValueTree(FILE* fout,
