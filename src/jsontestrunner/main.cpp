@@ -146,7 +146,9 @@ static int parseAndSaveValueTree(const JSONCPP_STRING& input,
       return 2;
     }
     printValueTree(factual, *root);
-    if (factual != NULL) fclose(factual);
+    if (factual != NULL) {
+fclose(factual);
+}
   return 0;
 }
 // static JSONCPP_STRING useFastWriter(Json::Value const& root) {
