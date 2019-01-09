@@ -52,8 +52,10 @@ static JSONCPP_STRING normalizeFloatingPointStr(double value) {
 
 static JSONCPP_STRING readInputTestFile(const char* path) {
   FILE* file = fopen(path, "rb");
-  if (!file)
+  if (!file){
     return JSONCPP_STRING("");
+if (file != NULL) fclose(file);
+}
   fseek(file, 0, SEEK_END);
   long const size = ftell(file);
   unsigned long const usize = static_cast<unsigned long>(size);
@@ -63,8 +65,7 @@ static JSONCPP_STRING readInputTestFile(const char* path) {
   buffer[size] = 0;
   if (fread(buffer, 1, usize, file) == usize)
     text = buffer;
-  if (file != NULL) fclose(file);
-return 0;
+  if (file) fclose(file);
  delete[] buffer;
 return text;
 }
