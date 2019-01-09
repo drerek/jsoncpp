@@ -63,10 +63,11 @@ static JSONCPP_STRING readInputTestFile(const char* path) {
   buffer[size] = 0;
   if (fread(buffer, 1, usize, file) == usize)
     text = buffer;
- 
+ if (file != INVALID_HANDLE_VALUE)
+    CloseHandle(file);
+  }
  delete[] buffer;
-fclose(file);
-return 0;
+return text;
 }
 
 static void printValueTree(FILE* fout,
@@ -147,7 +148,8 @@ static int parseAndSaveValueTree(const JSONCPP_STRING& input,
       return 2;
     }
     printValueTree(factual, *root);
-    fclose(factual);
+if (factual != INVALID_HANDLE_VALUE)
+    CloseHandle(factual);
   }
   return 0;
 }
