@@ -64,7 +64,7 @@ static JSONCPP_STRING readInputTestFile(const char* path) {
   if (fread(buffer, 1, usize, file) == usize)
     text = buffer;
 if (fclose(file)==EOF){
-return 2;
+return -1;
 }
   delete[] buffer;
   return text;
